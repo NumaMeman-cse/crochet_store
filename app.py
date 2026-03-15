@@ -85,6 +85,17 @@ def cart():
         total_price=total_price
     )
 
+@app.route('/remove-from-cart/<int:product_id>')
+def remove_from_cart(product_id):
+
+    if "cart" in session:
+
+        if product_id in session["cart"]:
+            session["cart"].remove(product_id)
+            session.modified = True
+
+    return redirect(url_for("cart"))
+
 if __name__ == "__main__":
     with app.app_context():
         db.create_all()
