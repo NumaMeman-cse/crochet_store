@@ -68,16 +68,21 @@ def add_to_cart(product_id):
 def cart():
 
     cart_items = []
+    total_price = 0
 
     if "cart" in session:
 
         for product_id in session["cart"]:
             product = Product.query.get(product_id)
-            cart_items.append(product)
+
+            if product:
+                cart_items.append(product)
+                total_price += product.price
 
     return render_template(
         "cart.html",
-        cart_items=cart_items
+        cart_items=cart_items,
+        total_price=total_price
     )
 
 if __name__ == "__main__":
