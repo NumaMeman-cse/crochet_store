@@ -1,10 +1,11 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, session, redirect, url_for
 from models import db
 
 app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.secret_key = "crochet_secret"
 
 db.init_app(app)
 
@@ -49,6 +50,34 @@ def product_detail(product_id):
     return render_template(
         "product_detail.html",
         product=product
+    )
+
+@app.route('/add-to-cart/<int:product_id>')
+def add_to_cart(product_id):
+
+    if "cart" not in session:
+        session["cart"] = []
+
+    session["cart"].append(product_id)
+
+    session.modified = True
+
+    return redirect(url_for("cart"))
+
+@app.route('/cart')
+def cart():
+
+    cart_items = []
+
+    if "cart" in session:
+
+        for product_id in session["cart"]:
+            product = Product.query.get(product_id)
+            cart_items.append(product)
+
+    return render_template(
+        "cart.html",
+        cart_items=cart_items
     )
 
 if __name__ == "__main__":
