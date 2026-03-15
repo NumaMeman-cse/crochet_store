@@ -41,6 +41,15 @@ def add_test_product():
     db.session.commit()
 
     return "Product Added!"
+@app.route('/product/<int:product_id>')
+def product_detail(product_id):
+
+    product = Product.query.get(product_id)
+
+    return render_template(
+        "product_detail.html",
+        product=product
+    )
 
 if __name__ == "__main__":
     with app.app_context():
