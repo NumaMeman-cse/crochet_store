@@ -56,10 +56,18 @@ def product_detail(product_id):
 def add_to_cart(product_id):
 
     if "cart" not in session:
-        session["cart"] = []
+        session["cart"] = {}
 
-    session["cart"].append(product_id)
+    cart = session["cart"]
 
+    product_id = str(product_id)
+
+    if product_id in cart:
+        cart[product_id] += 1
+    else:
+        cart[product_id] = 1
+
+    session["cart"] = cart
     session.modified = True
 
     return redirect(url_for("cart"))
@@ -72,12 +80,21 @@ def cart():
 
     if "cart" in session:
 
-        for product_id in session["cart"]:
+        for product_id, quantity in session["cart"].items():
+
             product = Product.query.get(product_id)
 
             if product:
-                cart_items.append(product)
-                total_price += product.price
+
+                subtotal = product.price * quantity
+
+                cart_items.append({
+                    "product": product,
+                    "quantity": quantity,
+                    "subtotal": subtotal
+                })
+
+                total_price += subtotal
 
     return render_template(
         "cart.html",
@@ -95,6 +112,7 @@ def remove_from_cart(product_id):
             session.modified = True
 
     return redirect(url_for("cart"))
+
 
 if __name__ == "__main__":
     with app.app_context():

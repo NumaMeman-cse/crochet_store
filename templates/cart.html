@@ -20,19 +20,29 @@
 <tr>
 <th>Product</th>
 <th>Price</th>
+<th>Quantity</th>
+<th>Subtotal</th>
 <th>Action</th>
 </tr>
 
 {% for item in cart_items %}
 
 <tr>
-<td>{{item.name}}</td>
-<td>₹ {{item.price}}</td>
+
+<td>{{item.product.name}}</td>
+
+<td>₹ {{item.product.price}}</td>
+
+<td>{{item.quantity}}</td>
+
+<td>₹ {{item.subtotal}}</td>
+
 <td>
-<a href="/remove-from-cart/{{item.id}}" class="btn btn-danger btn-sm">
+<a href="/remove-from-cart/{{item.product.id}}" class="btn btn-danger btn-sm">
 Remove
 </a>
 </td>
+
 </tr>
 
 {% endfor %}
