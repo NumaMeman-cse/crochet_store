@@ -1,0 +1,24 @@
+<h2>Admin Dashboard</h2>
+
+<h3>Products</h3>
+
+<a href="/add-product">
+<button>Add New Product</button>
+</a>
+
+<hr>
+
+{% for product in products %}
+
+<div style="border:1px solid gray; padding:10px; margin-bottom:10px">
+
+<p>{{product.name}}</p>
+<p>₹ {{product.price}}</p>
+
+<a href="/delete-product/{{product.id}}">
+<button>Delete</button>
+</a>
+
+</div>
+
+{% endfor %}

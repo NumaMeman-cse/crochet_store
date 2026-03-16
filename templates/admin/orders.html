@@ -1,0 +1,25 @@
+<h2>All Orders</h2>
+
+{% for order in orders %}
+
+<div style="border:1px solid gray; padding:10px; margin-bottom:15px">
+
+<p><b>Order ID:</b> {{order.id}}</p>
+
+<p><b>User ID:</b> {{order.user_id}}</p>
+
+<p><b>Total:</b> ₹ {{order.total_price}}</p>
+
+<p><b>Shipping:</b> ₹ {{order.shipping_price}}</p>
+
+<p><b>Payment:</b> {{order.payment_status}}</p>
+
+<p><b>Status:</b> {{order.order_status}}</p>
+
+<a href="/admin/order/{{order.id}}">
+<button>View Details</button>
+</a>
+
+</div>
+
+{% endfor %}

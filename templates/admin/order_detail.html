@@ -1,0 +1,16 @@
+<h2>Order Details</h2>
+
+<p>Order ID: {{order.id}}</p>
+<p>Status: {{order.order_status}}</p>
+
+<hr>
+
+{% for item in items %}
+
+<p>
+Product ID: {{item.product_id}}  
+Quantity: {{item.quantity}}  
+Price: ₹ {{item.price}}
+</p>
+
+{% endfor %}

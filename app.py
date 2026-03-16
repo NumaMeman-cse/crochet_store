@@ -260,6 +260,87 @@ def place_order():
 
     return "Order placed successfully!"
 
+@app.route('/my-orders')
+def my_orders():
+
+    if "user_id" not in session:
+        return redirect(url_for("login"))
+
+    orders = Order.query.filter_by(user_id=session["user_id"]).all()
+
+    return render_template(
+        "my_orders.html",
+        orders=orders
+    )
+
+@app.route('/admin')
+def admin_dashboard():
+
+    products = Product.query.all()
+
+    return render_template("admin/admin_dashboard.html", products=products)
+
+@app.route('/add-product', methods=["GET","POST"])
+def add_product():
+
+    if request.method == "POST":
+
+        name = request.form["name"]
+        description = request.form["description"]
+        price = request.form["price"]
+        image = request.form["image"]
+        category = request.form["category"]
+        stock = request.form["stock"]
+
+        product = Product(
+            name=name,
+            description=description,
+            price=price,
+            image=image,
+            category=category,
+            stock=stock
+        )
+
+        db.session.add(product)
+        db.session.commit()
+
+        return redirect(url_for("admin_dashboard"))
+
+    return render_template("admin/add_product.html")
+
+@app.route('/admin/orders')
+def admin_orders():
+
+    orders = Order.query.all()
+
+    return render_template(
+        "admin/orders.html",
+        orders=orders
+    )
+
+@app.route('/admin/order/<int:order_id>')
+def admin_order_detail(order_id):
+
+    order = Order.query.get(order_id)
+
+    items = OrderItem.query.filter_by(order_id=order_id).all()
+
+    return render_template(
+        "admin/order_detail.html",
+        order=order,
+        items=items
+    )
+
+@app.route('/delete-product/<int:product_id>')
+def delete_product(product_id):
+
+    product = Product.query.get(product_id)
+
+    db.session.delete(product)
+    db.session.commit()
+
+    return redirect(url_for("admin_dashboard"))
+
 if __name__ == "__main__":
 
     with app.app_context():

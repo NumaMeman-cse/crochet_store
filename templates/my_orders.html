@@ -1,0 +1,19 @@
+<h2>My Orders</h2>
+
+{% for order in orders %}
+
+<div style="border:1px solid gray; padding:10px; margin-bottom:10px">
+
+<p>Order ID: {{order.id}}</p>
+
+<p>Total Price: ₹ {{order.total_price}}</p>
+
+<p>Shipping: ₹ {{order.shipping_price}}</p>
+
+<p>Payment Status: {{order.payment_status}}</p>
+
+<p>Order Status: {{order.order_status}}</p>
+
+</div>
+
+{% endfor %}
