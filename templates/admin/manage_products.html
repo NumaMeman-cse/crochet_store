@@ -1,25 +1,65 @@
-<h2>Manage Products</h2>
+{% extends "base.html" %}
 
-<hr>
+{% block content %}
+
+<h2 class="mb-4">Manage Products</h2>
+
+<div class="table-responsive">
+
+<table class="table table-bordered table-striped align-middle">
+
+<thead class="table-dark">
+<tr>
+<th>ID</th>
+<th>Image</th>
+<th>Name</th>
+<th>Price</th>
+<th>Category</th>
+<th>Stock</th>
+<th>Actions</th>
+</tr>
+</thead>
+
+<tbody>
 
 {% for product in products %}
 
-<div style="border:1px solid gray; padding:10px; margin-bottom:10px">
+<tr>
 
-<p><b>{{ product.name }}</b></p>
+<td>{{ product.id }}</td>
 
-<p>Price: ₹ {{ product.price }}</p>
+<td>
+<img src="{{ product.image }}" style="width:70px;height:70px;object-fit:cover;">
+</td>
 
-<p>Stock: {{ product.stock }}</p>
+<td>{{ product.name }}</td>
 
-<a href="/admin/edit-product/{{product.id}}">
-<button>Edit</button>
+<td>₹ {{ product.price }}</td>
+
+<td>{{ product.category }}</td>
+
+<td>{{ product.stock }}</td>
+
+<td>
+
+<a href="/admin/edit-product/{{product.id}}" class="btn btn-sm btn-primary">
+Edit
 </a>
 
-<a href="/delete-product/{{product.id}}">
-<button>Delete</button>
+<a href="/admin/delete-product/{{product.id}}" class="btn btn-sm btn-danger">
+Delete
 </a>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
 
 </div>
 
-{% endfor %}
+{% endblock %}

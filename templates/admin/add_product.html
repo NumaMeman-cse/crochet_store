@@ -1,19 +1,21 @@
-<h2>Add Product</h2>
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+
+<div class="col-md-7">
+
+<div class="card shadow-sm p-4">
+
+<h3 class="mb-4 text-center">Add New Product</h3>
 
 <form method="POST">
 
-<input name="name" placeholder="Product Name"><br><br>
+<div class="mb-3">
+<label class="form-label">Product Name</label>
+<input name="name" class="form-control" placeholder="Enter product name" required>
+</div>
 
-<textarea name="description" placeholder="Description"></textarea><br><br>
-
-<input name="price" placeholder="Price"><br><br>
-
-<input name="image" placeholder="Image URL"><br><br>
-
-<input name="category" placeholder="Category"><br><br>
-
-<input name="stock" placeholder="Stock"><br><br>
-
-<button type="submit">Add Product</button>
-
-</form>
+<div class="mb-3">
+<label class="
