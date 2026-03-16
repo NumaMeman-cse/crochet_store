@@ -1,0 +1,23 @@
+<h2>Checkout</h2>
+
+{% for item in cart_items %}
+
+<p>
+{{item.product.name}}
+Quantity: {{item.quantity}}
+Subtotal: ₹ {{item.subtotal}}
+</p>
+
+{% endfor %}
+
+<hr>
+
+<p>Total: ₹ {{total_price}}</p>
+
+<p>Shipping: ₹ {{shipping_price}}</p>
+
+<h3>Grand Total: ₹ {{grand_total}}</h3>
+
+<a href="/place-order">
+<button>Place Order</button>
+</a>
