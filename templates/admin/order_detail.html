@@ -1,23 +1,80 @@
-<h2>Order Details</h2>
+{% extends "base.html" %}
 
-<p>Order ID: {{order.id}}</p>
-<p>Status: {{order.order_status}}</p>
+{% block content %}
 
-<hr>
+<h2 class="mb-4">Order Details</h2>
+
+<!-- ORDER INFO -->
+
+<div class="card shadow-sm mb-4">
+
+<div class="card-body">
+
+<p><strong>Order ID:</strong> {{order.id}}</p>
+
+<p><strong>Order Status:</strong> {{order.order_status}}</p>
+
+</div>
+
+</div>
+
+
+<!-- ORDER ITEMS -->
+
+<div class="card shadow-sm mb-4">
+
+<div class="card-header bg-dark text-white">
+Products in this Order
+</div>
+
+<div class="card-body">
+
+<table class="table">
+
+<thead>
+<tr>
+<th>Product ID</th>
+<th>Quantity</th>
+<th>Price</th>
+</tr>
+</thead>
+
+<tbody>
 
 {% for item in items %}
 
-<p>
-Product ID: {{item.product_id}}  
-Quantity: {{item.quantity}}  
-Price: ₹ {{item.price}}
-</p>
+<tr>
 
-<h3>Update Order Status</h3>
+<td>{{item.product_id}}</td>
+
+<td>{{item.quantity}}</td>
+
+<td>₹ {{item.price}}</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+
+<!-- UPDATE STATUS -->
+
+<div class="card shadow-sm p-4">
+
+<h4>Update Order Status</h4>
 
 <form method="POST" action="/admin/update-order/{{order.id}}">
 
-<select name="status">
+<div class="mb-3">
+
+<select name="status" class="form-control">
 
 <option value="Processing">Processing</option>
 
@@ -25,9 +82,18 @@ Price: ₹ {{item.price}}
 
 <option value="Delivered">Delivered</option>
 
+<option value="Cancelled">Cancelled</option>
+
 </select>
 
-<button type="submit">Update Status</button>
+</div>
+
+<button type="submit" class="btn btn-primary">
+Update Status
+</button>
 
 </form>
-{% endfor %}
+
+</div>
+
+{% endblock %}
