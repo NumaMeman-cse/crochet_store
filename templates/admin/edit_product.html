@@ -1,19 +1,57 @@
-<h2>Edit Product</h2>
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+
+<div class="col-md-7">
+
+<div class="card shadow-sm p-4">
+
+<h3 class="mb-4 text-center">Edit Product</h3>
 
 <form method="POST">
 
-<input name="name" value="{{product.name}}"><br><br>
+<div class="mb-3">
+<label class="form-label">Product Name</label>
+<input name="name" class="form-control" value="{{product.name}}" required>
+</div>
 
-<textarea name="description">{{product.description}}</textarea><br><br>
+<div class="mb-3">
+<label class="form-label">Description</label>
+<textarea name="description" class="form-control" rows="3" required>{{product.description}}</textarea>
+</div>
 
-<input name="price" value="{{product.price}}"><br><br>
+<div class="mb-3">
+<label class="form-label">Price</label>
+<input name="price" class="form-control" value="{{product.price}}" required>
+</div>
 
-<input name="image" value="{{product.image}}"><br><br>
+<div class="mb-3">
+<label class="form-label">Image URL</label>
+<input name="image" class="form-control" value="{{product.image}}" required>
+</div>
 
-<input name="category" value="{{product.category}}"><br><br>
+<div class="mb-3">
+<label class="form-label">Category</label>
+<input name="category" class="form-control" value="{{product.category}}" required>
+</div>
 
-<input name="stock" value="{{product.stock}}"><br><br>
+<div class="mb-3">
+<label class="form-label">Stock</label>
+<input name="stock" class="form-control" value="{{product.stock}}" required>
+</div>
 
-<button type="submit">Update Product</button>
+<button type="submit" class="btn btn-primary w-100">
+Update Product
+</button>
 
 </form>
+
+</div>
+
+</div>
+
+</div>
+
+{% endblock %}
