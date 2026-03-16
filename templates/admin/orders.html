@@ -1,25 +1,93 @@
-<h2>All Orders</h2>
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2 class="mb-4">Admin - All Orders</h2>
+
+<div class="table-responsive">
+
+<table class="table table-bordered table-striped">
+
+<thead class="table-dark">
+
+<tr>
+<th>Order ID</th>
+<th>User ID</th>
+<th>Total</th>
+<th>Shipping</th>
+<th>Payment</th>
+<th>Status</th>
+<th>Action</th>
+</tr>
+
+</thead>
+
+<tbody>
 
 {% for order in orders %}
 
-<div style="border:1px solid gray; padding:10px; margin-bottom:15px">
+<tr>
 
-<p><b>Order ID:</b> {{order.id}}</p>
+<td>#{{order.id}}</td>
 
-<p><b>User ID:</b> {{order.user_id}}</p>
+<td>{{order.user_id}}</td>
 
-<p><b>Total:</b> ₹ {{order.total_price}}</p>
+<td>₹ {{order.total_price}}</td>
 
-<p><b>Shipping:</b> ₹ {{order.shipping_price}}</p>
+<td>₹ {{order.shipping_price}}</td>
 
-<p><b>Payment:</b> {{order.payment_status}}</p>
+<td>
 
-<p><b>Status:</b> {{order.order_status}}</p>
+{% if order.payment_status == "Paid" %}
 
-<a href="/admin/order/{{order.id}}">
-<button>View Details</button>
+<span class="badge bg-success">Paid</span>
+
+{% else %}
+
+<span class="badge bg-warning text-dark">Pending</span>
+
+{% endif %}
+
+</td>
+
+<td>
+
+{% if order.order_status == "Delivered" %}
+
+<span class="badge bg-success">Delivered</span>
+
+{% elif order.order_status == "Shipped" %}
+
+<span class="badge bg-primary">Shipped</span>
+
+{% elif order.order_status == "Cancelled" %}
+
+<span class="badge bg-danger">Cancelled</span>
+
+{% else %}
+
+<span class="badge bg-secondary">Processing</span>
+
+{% endif %}
+
+</td>
+
+<td>
+
+<a href="/admin/order/{{order.id}}" class="btn btn-sm btn-dark">
+View
 </a>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
 
 </div>
 
-{% endfor %}
+{% endblock %}
