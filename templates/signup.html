@@ -1,15 +1,66 @@
-<h2>Signup</h2>
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+
+<div class="col-md-6">
+
+<div class="card shadow-sm p-4">
+
+<h3 class="text-center mb-4">Create Your Account</h3>
 
 <form method="POST">
 
-<input type="text" name="name" placeholder="Name"><br><br>
+<div class="mb-3">
 
-<input type="email" name="email" placeholder="Email"><br><br>
+<label class="form-label">Full Name</label>
 
-<input type="password" name="password" placeholder="Password"><br><br>
+<input type="text" name="name" class="form-control" placeholder="Enter your name" required>
 
-<textarea name="address" placeholder="Address"></textarea><br><br>
+</div>
 
-<button type="submit">Create Account</button>
+<div class="mb-3">
+
+<label class="form-label">Email</label>
+
+<input type="email" name="email" class="form-control" placeholder="Enter your email" required>
+
+</div>
+
+<div class="mb-3">
+
+<label class="form-label">Password</label>
+
+<input type="password" name="password" class="form-control" placeholder="Create a password" required>
+
+</div>
+
+<div class="mb-3">
+
+<label class="form-label">Address</label>
+
+<textarea name="address" class="form-control" rows="3" placeholder="Enter your address" required></textarea>
+
+</div>
+
+<button type="submit" class="btn btn-success w-100">
+Create Account
+</button>
 
 </form>
+
+<hr>
+
+<p class="text-center">
+Already have an account?
+<a href="/login">Login</a>
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+{% endblock %}
