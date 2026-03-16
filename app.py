@@ -351,18 +351,28 @@ def manage_products():
         products=products
     )
 
-@app.route('/admin/update-order/<int:order_id>', methods=["POST"])
-def update_order(order_id):
+@app.route('/admin/edit-product/<int:product_id>', methods=["GET","POST"])
+def edit_product(product_id):
 
-    order = Order.query.get(order_id)
+    product = Product.query.get(product_id)
 
-    new_status = request.form["status"]
+    if request.method == "POST":
 
-    order.order_status = new_status
+        product.name = request.form["name"]
+        product.description = request.form["description"]
+        product.price = request.form["price"]
+        product.image = request.form["image"]
+        product.category = request.form["category"]
+        product.stock = request.form["stock"]
 
-    db.session.commit()
+        db.session.commit()
 
-    return redirect(url_for("admin_orders"))
+        return redirect(url_for("manage_products"))
+
+    return render_template(
+        "admin/edit_product.html",
+        product=product
+    )
 
 
 if __name__ == "__main__":
