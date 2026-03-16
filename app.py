@@ -1,5 +1,5 @@
 from flask import Flask, render_template, session, redirect, url_for, request
-from models import db, Product, User
+from models import db, Product, User ,Order , OrderItem
 
 app = Flask(__name__)
 
