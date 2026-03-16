@@ -1,21 +1,56 @@
-<h2>Admin Dashboard</h2>
+{% extends "base.html" %}
 
-<hr>
+{% block content %}
 
-<h3>Product Management</h3>
+<h2 class="mb-4">Admin Dashboard</h2>
 
-<a href="/add-product">
-<button>Add New Product</button>
+<div class="row g-4">
+
+<!-- PRODUCT MANAGEMENT -->
+
+<div class="col-md-6">
+
+<div class="card shadow-sm p-4">
+
+<h4 class="mb-3">Product Management</h4>
+
+<p class="text-muted">
+Add new crochet products or manage existing products.
+</p>
+
+<a href="/add-product" class="btn btn-success mb-2 w-100">
+Add New Product
 </a>
 
-<a href="/admin/manage-products">
-<button>Manage Products</button>
+<a href="/admin/manage-products" class="btn btn-dark w-100">
+Manage Products
 </a>
 
-<hr>
+</div>
 
-<h3>Orders</h3>
+</div>
 
-<a href="/admin/orders">
-<button>View Orders</button>
+
+<!-- ORDER MANAGEMENT -->
+
+<div class="col-md-6">
+
+<div class="card shadow-sm p-4">
+
+<h4 class="mb-3">Order Management</h4>
+
+<p class="text-muted">
+View and manage customer orders.
+</p>
+
+<a href="/admin/orders" class="btn btn-primary w-100">
+View Orders
 </a>
+
+</div>
+
+</div>
+
+</div>
+
+{% endblock %}
