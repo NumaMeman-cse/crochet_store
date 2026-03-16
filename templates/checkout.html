@@ -1,23 +1,92 @@
-<h2>Checkout</h2>
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2 class="mb-4">Checkout</h2>
+
+<div class="row">
+
+<!-- ORDER SUMMARY -->
+
+<div class="col-md-8">
+
+<div class="card shadow-sm">
+
+<div class="card-header bg-dark text-white">
+Order Summary
+</div>
+
+<div class="card-body">
+
+<table class="table">
+
+<thead>
+<tr>
+<th>Product</th>
+<th>Quantity</th>
+<th>Subtotal</th>
+</tr>
+</thead>
+
+<tbody>
 
 {% for item in cart_items %}
 
-<p>
-{{item.product.name}}
-Quantity: {{item.quantity}}
-Subtotal: ₹ {{item.subtotal}}
-</p>
+<tr>
+<td>{{item.product.name}}</td>
+<td>{{item.quantity}}</td>
+<td>₹ {{item.subtotal}}</td>
+</tr>
 
 {% endfor %}
 
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- PAYMENT SUMMARY -->
+
+<div class="col-md-4">
+
+<div class="card shadow-sm">
+
+<div class="card-header bg-success text-white">
+Payment Summary
+</div>
+
+<div class="card-body">
+
+<p>
+<strong>Total:</strong> ₹ {{total_price}}
+</p>
+
+<p>
+<strong>Shipping:</strong> ₹ {{shipping_price}}
+</p>
+
 <hr>
 
-<p>Total: ₹ {{total_price}}</p>
+<h4>
+Grand Total: ₹ {{grand_total}}
+</h4>
 
-<p>Shipping: ₹ {{shipping_price}}</p>
-
-<h3>Grand Total: ₹ {{grand_total}}</h3>
-
-<a href="/place-order">
-<button>Place Order</button>
+<a href="/place-order" class="btn btn-success w-100 mt-3">
+Place Order
 </a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+{% endblock %}
