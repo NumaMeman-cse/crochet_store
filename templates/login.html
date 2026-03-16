@@ -1,11 +1,50 @@
-<h2>Login</h2>
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+
+<div class="col-md-5">
+
+<div class="card shadow-sm p-4">
+
+<h3 class="text-center mb-4">Login to Your Account</h3>
 
 <form method="POST">
 
-<input type="email" name="email" placeholder="Email"><br><br>
+<div class="mb-3">
 
-<input type="password" name="password" placeholder="Password"><br><br>
+<label class="form-label">Email</label>
 
-<button type="submit">Login</button>
+<input type="email" name="email" class="form-control" placeholder="Enter your email" required>
+
+</div>
+
+<div class="mb-3">
+
+<label class="form-label">Password</label>
+
+<input type="password" name="password" class="form-control" placeholder="Enter your password" required>
+
+</div>
+
+<button type="submit" class="btn btn-dark w-100">
+Login
+</button>
 
 </form>
+
+<hr>
+
+<p class="text-center">
+Don't have an account?
+<a href="/signup">Signup</a>
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+{% endblock %}
