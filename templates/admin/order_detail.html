@@ -13,4 +13,21 @@ Quantity: {{item.quantity}}
 Price: ₹ {{item.price}}
 </p>
 
+<h3>Update Order Status</h3>
+
+<form method="POST" action="/admin/update-order/{{order.id}}">
+
+<select name="status">
+
+<option value="Processing">Processing</option>
+
+<option value="Shipped">Shipped</option>
+
+<option value="Delivered">Delivered</option>
+
+</select>
+
+<button type="submit">Update Status</button>
+
+</form>
 {% endfor %}

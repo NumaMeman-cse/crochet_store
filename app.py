@@ -341,6 +341,30 @@ def delete_product(product_id):
 
     return redirect(url_for("admin_dashboard"))
 
+@app.route('/admin/manage-products')
+def manage_products():
+
+    products = Product.query.all()
+
+    return render_template(
+        "admin/manage_products.html",
+        products=products
+    )
+
+@app.route('/admin/update-order/<int:order_id>', methods=["POST"])
+def update_order(order_id):
+
+    order = Order.query.get(order_id)
+
+    new_status = request.form["status"]
+
+    order.order_status = new_status
+
+    db.session.commit()
+
+    return redirect(url_for("admin_orders"))
+
+
 if __name__ == "__main__":
 
     with app.app_context():
